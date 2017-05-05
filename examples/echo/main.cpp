@@ -11,7 +11,7 @@ void newMessage(Telegram::Message message)
     qDebug() << "new message:" << message;
 
     if (bot && message.type == Telegram::Message::TextType) {
-        bot->sendMessage((qint32)message.from.id, message.string);
+        bot->sendMessage(message.from.id, message.string);
     }
 }
 

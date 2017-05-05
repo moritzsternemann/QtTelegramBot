@@ -17,7 +17,7 @@ public:
         Private, Group, Channel
     };
 
-    quint32 id;
+    qint32 id;
     ChatType type;
     QString title;
     QString username;
