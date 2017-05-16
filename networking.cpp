@@ -1,5 +1,7 @@
 #include "networking.h"
 
+#include <ctime>
+
 using namespace Telegram;
 
 Networking::Networking(QString token, QObject *parent) :

@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    bot = new Telegram::Bot(TOKEN, false, 500, 4);
+    bot = new Telegram::Bot(TOKEN, true, 500, 4);
     QObject::connect(bot, &Telegram::Bot::message, &newMessage);
     qDebug() << "Started Telegram Bot";
 
