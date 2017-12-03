@@ -16,7 +16,8 @@ SOURCES += \
     $$PWD/types/video.cpp \
     $$PWD/types/voice.cpp \
     $$PWD/types/contact.cpp \
-    $$PWD/types/location.cpp
+    $$PWD/types/location.cpp \
+    $$PWD/types/callbackquery.cpp
 
 HEADERS += \
     $$PWD/qttelegrambot.h \
@@ -37,7 +38,10 @@ HEADERS += \
     $$PWD/types/reply/genericreply.h \
     $$PWD/types/reply/replykeyboardmarkup.h \
     $$PWD/types/reply/replykeyboardhide.h \
-    $$PWD/types/reply/forcereply.h
+    $$PWD/types/reply/forcereply.h \
+    $$PWD/types/callbackquery.h \
+    $$PWD/types/reply/inlinekeyboardmarkup.h \
+    $$PWD/types/reply/replykeyboardremove.h
 
 OTHER_FILES += \
     $$PWD/README.md

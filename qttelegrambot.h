@@ -25,7 +25,9 @@
 #include "types/reply/genericreply.h"
 #include "types/reply/replykeyboardmarkup.h"
 #include "types/reply/replykeyboardhide.h"
+#include "types/reply/replykeyboardremove.h"
 #include "types/reply/forcereply.h"
+#include "types/reply/inlinekeyboardmarkup.h"
 
 namespace Telegram {
 
@@ -246,6 +248,19 @@ public:
     bool sendChatAction(QVariant chatId, ChatAction action);
 
     /**
+      *Use this method when you need to answer to the user in response to callback command sent
+      * @param callback_query_id - Unique identifier for the query to be answered
+      * @param text - Text of the notification. If not specified, nothing will be shown to the user, 0-200 characters
+      * @param show_alert - If true, an alert will be shown by the client instead of a notification at the top of the chat screen. Defaults to false.
+      * @param url - URL that will be opened by the user's client. If you have created a Game and accepted the conditions via
+      *             @Botfather, specify the URL that opens your game – note that this will only work if the query comes from
+      *             a callback_game button.
+      * @param cache_time - The maximum amount of time in seconds that the result of the callback query may be cached client-side.
+      *                     Telegram apps will support caching starting in version 3.14. Defaults to 0.
+      */
+    bool answerCallbackQuery(QVariant callback_query_id, QString text = QString(), bool show_alert = false, QString url = QString(), quint32 cache_time = 0);
+
+    /**
      * Use this method to get a list of profile pictures for a user.
      * @param userId - Unique identifier of the target user
      * @param offset - Sequential number of the first photo to be returned.
@@ -302,6 +317,7 @@ private:
 
 signals:
     void message(Message message);
+    void update(Update update);
 };
 
 }

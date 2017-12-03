@@ -20,6 +20,7 @@
 #define ENDPOINT_SEND_VOICE                 "/sendVoice"
 #define ENDPOINT_SEND_LOCATION              "/sendLocation"
 #define ENDPOINT_SEND_CHAT_ACTION           "/sendChatAction"
+#define ENDPOINT_ANSWER_CALLBACK_QUERY      "/answerCallbackQuery"
 #define ENDPOINT_GET_USER_PROFILE_PHOTOS    "/getUserProfilePhotos"
 #define ENDPOINT_GET_UPDATES                "/getUpdates"
 #define ENDPOINT_SET_WEBHOOK                "/setWebhook"
