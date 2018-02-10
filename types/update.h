@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QJsonObject>
 #include "message.h"
+#include "callbackquery.h"
 
 namespace Telegram {
 
@@ -15,6 +16,7 @@ public:
 
     quint32 id;
     Message message;
+    CallbackQuery callbackquery;
 };
 
 inline QDebug operator<< (QDebug dbg, const Update &update)

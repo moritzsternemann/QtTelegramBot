@@ -7,7 +7,9 @@ Bot::Bot(QString token, bool updates, quint32 updateInterval, quint32 pollingTim
     m_net(new Networking(token)),
     m_internalUpdateTimer(new QTimer(this)),
     m_updateInterval(updateInterval),
+    m_updateOffset(0),
     m_pollingTimeout(pollingTimeout)
+
 {
     QLoggingCategory::setFilterRules("qt.network.ssl.warning=false");
 
@@ -218,6 +220,17 @@ bool Bot::sendChatAction(QVariant chatId, Bot::ChatAction action)
     return success;
 }
 
+bool Bot::answerCallbackQuery(QVariant callback_query_id, QString text, bool show_alert, QString url, quint32 cache_time)
+{
+    ParameterList params;
+    params.insert("callback_query_id", HttpParameter(callback_query_id));
+    if (!text.isEmpty()) params.insert("text", HttpParameter(text));
+    if (show_alert) params.insert("show_alert", HttpParameter(show_alert));
+    if (!url.isEmpty()) params.insert("url", HttpParameter(url));
+    if (cache_time) params.insert("cache_time", HttpParameter(cache_time));
+    return  this->responseOk(m_net->request(ENDPOINT_ANSWER_CALLBACK_QUERY, params, Networking::POST));
+}
+
 UserProfilePhotos Bot::getUserProfilePhotos(quint32 userId, qint16 offset, qint8 limit)
 {
     ParameterList params;
@@ -396,6 +409,7 @@ void Bot::internalGetUpdates()
         m_updateOffset = (u.id >= m_updateOffset ? u.id + 1 : m_updateOffset);
         
         emit message(u.message);
+        emit update(u);
     }
     
     m_internalUpdateTimer->start(m_updateInterval);

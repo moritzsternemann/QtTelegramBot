@@ -44,7 +44,7 @@ public:
         o.insert("keyboard", keyboardMarkup);
         o.insert("resize_keyboard", resizeKeyboard);
         o.insert("one_time_keyboard", oneTimeKeyboard);
-        o.insert("selective", selective);
+        o.insert("selective", selective);        
         return serializeJson(o);
     }
 };
